@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication.Models.Author>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Authors</h1>
+<div class="text-center">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col"> @Html.DisplayNameFor(model => model.FirstName)</th>
+            <th scope="col"> @Html.DisplayNameFor(model => model.LastName)</th>
+            <th scope="col"> @Html.DisplayNameFor(model => model.YearOfBirth)</th>
+            <th scope="col"> @Html.DisplayNameFor(model => model.AuthorBooks)</th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-plus text-success"  data-toggle="modal" data-target="#AuthorModal"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var author in Model)
+        {
+            <tr id="@author.AuthorId">
+                <td>@author.FirstName</td>
+                <td>@author.LastName</td>
+                <td>@author.YearOfBirth</td>
+                <td>
+                    Books: @author.AuthorBooks.Count
+                    <ul>
+                        @foreach (var authorBook in author.AuthorBooks)
+                        {
+                            <li>@authorBook.Book.BookTitle</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@author.AuthorId" class="text-danger ml-1">
+                        <span class="glyphicon glyphicon-trash" id="remove"></span>	
+                    </a><span class="glyphicon glyphicon-pencil text-warning" id="edit"> </span>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>   
+    <div class="modal fade" id="AuthorModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        @{
+            Html.RenderPartial("AuthorModal",new Author());
+        }
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

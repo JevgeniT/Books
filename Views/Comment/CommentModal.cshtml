@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Comment>
+
+<ul>
+@foreach(var comment in Model)
+{  
+    <li>@comment.CommentText </li>
+}
+</ul>
+
+@{Html.RenderPartial("AddComment",new Comment());}       

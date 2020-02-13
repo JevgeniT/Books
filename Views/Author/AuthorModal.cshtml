@@ -1,0 +1,41 @@
+﻿@model Author
+
+@using (Html.BeginForm("AddOrEdit", "Author", FormMethod.Post))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-left">Add or Edit Author</h4>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(model => model.AuthorId)
+               <div class="form-group row">
+                    <label asp-for="FirstName" class="col-sm-3 col-form-label"></label>
+                      <div class="col-sm-7" >
+                         <input asp-for="FirstName" class="form-control" />
+                          <span asp-validation-for="FirstName" class="text-danger"></span>
+                      </div>
+                </div>
+
+               <div class="form-group row">
+                  <label asp-for="LastName" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-7" >
+                       <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+               <div class="form-group row">
+                    <label asp-for="YearOfBirth" class="col-sm-3 col-form-label"></label>
+                      <div class="col-sm-7" >
+                         <input asp-for="YearOfBirth" class="form-control" />
+                          <span asp-validation-for="YearOfBirth" class="text-danger"></span>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

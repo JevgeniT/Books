@@ -1,0 +1,43 @@
+﻿@model Book
+@{
+    IEnumerable<int> AuthorIds = ViewBag.AuthorIds;
+}
+@using (Html.BeginForm("AddOrEdit", "Home", FormMethod.Post))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-left">Add Book</h4>
+            </div>
+            <div class="modal-body">
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                <div class="input-group input-group-sm">
+                    <label for="" class="control-label"></label>
+                    @Html.HiddenFor(model => model.BookId)
+                </div>
+                <div class="form-group row">
+                    <label asp-for="BookTitle" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-7">
+                        <input asp-for="BookTitle" class="form-control"/>
+                        <span asp-validation-for="BookTitle" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Publisher" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-7">
+                        <select asp-for="PublisherId" class="form-control" asp-items="ViewBag.Publisher"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label asp-for="BookAuthors" class="control-label"></label>
+                        <select asp-for="@AuthorIds" class="form-control" asp-items="ViewBag.AuthorSelectList">
+                        </select>
+                    </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,26 @@
+﻿@model Comment
+
+
+@using (Html.BeginForm("AddOrEdit", "Comment", FormMethod.Post))
+{
+   
+    <form class="form-horizontal" action="" id="">
+        <div class="form-inline">
+            <label for="" class="control-label"></label> 
+            @Html.HiddenFor(model => model.BookId)
+                        @* @Html.TextBoxFor(model => model.BookId) *@
+
+        </div> 
+        @* <div class="form-inline"> *@
+        @*             <label for="" class="control-label"></label>  *@
+        @*             @Html.HiddenFor(model => model.CommentId)     *@
+        @*         </div>  *@
+        <div class="container-fluid">
+            @Html.TextAreaFor(x => x.CommentText,  new { @class = "form-control" })
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+}
